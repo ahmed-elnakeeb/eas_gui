@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eas_gui", "eas_gui\eas_gui.csproj", "{6FF9AE66-8285-4A27-9406-B9C5DA197DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FF9AE66-8285-4A27-9406-B9C5DA197DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FF9AE66-8285-4A27-9406-B9C5DA197DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FF9AE66-8285-4A27-9406-B9C5DA197DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FF9AE66-8285-4A27-9406-B9C5DA197DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBF6ACFD-4712-4833-AF18-2F7DA679CE83}
+	EndGlobalSection
+EndGlobal
