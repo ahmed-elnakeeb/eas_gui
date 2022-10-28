@@ -5,36 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:eas_gui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="571" Width="1000">
+        Title="MainWindow"  Height="571" Width="1000">
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Center" Height="535" VerticalAlignment="Center" Width="977">
             <TabItem HorizontalAlignment="Center" Height="20" Header="exams" VerticalAlignment="Center" Width="70">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button_delete" Content="delete" HorizontalAlignment="Left" Width="50" Margin="242,67,0,0" VerticalAlignment="Top" Click="button_delete_Click"/>
-                    <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="140" Margin="10,17,0,0" VerticalAlignment="Top" Width="215"  AutoGenerateColumns="False" SelectedCellsChanged="dataGrid_SelectedCellsChanged">
-
-                        <DataGrid.Columns>
-
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                            <!--<DataGridTextColumn Header="Question" Binding="{Binding Questions}" />-->
-
-
-                        </DataGrid.Columns>
-                        <DataGrid.RowDetailsTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Details}"  />
-                            </DataTemplate>
-                        </DataGrid.RowDetailsTemplate>
-
-                    </DataGrid>
-                    <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="185" Margin="10,191,0,0" VerticalAlignment="Top" Width="215" >
-
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Question" Binding="{Binding Q}" />
-                            <!--<DataGridTextColumn Header="Answer" Binding="{Binding A}" />-->
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button x:Name="button_from_csv" Content="from csv" HorizontalAlignment="Left" Width="50" Margin="242,42,0,0" VerticalAlignment="Top" Click="button_from_csv_Click"/>
+                    <Button x:Name="button_load_asnwers" Content="load answers" Width="90" Height="30" HorizontalAlignment="Left" Margin="667,153,0,0" VerticalAlignment="Top" Click="button_load_asnwers_Click"/>
+                    <Button x:Name="button_start" Content="start" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Height="30" Width="90" Click="button_start_Click"/>
+                    <TextBox x:Name="textBox_examtab_answers_location" HorizontalAlignment="Left" Height="30" Margin="96,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="536" FontSize="18" />
+                    <Button x:Name="button_load_question" Content="load questions" Width="90" Height="30" HorizontalAlignment="Left" Margin="667,68,0,0" VerticalAlignment="Top" Click="button_load_question_Click"/>
+                    <TextBox x:Name="textBox_examtab_questions_location" HorizontalAlignment="Left" Height="30" Margin="96,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="536" FontSize="18" />
+                    <TextBox x:Name="textBox_examtab_out_location" HorizontalAlignment="Left" Height="30" Margin="96,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="536" FontSize="18" />
+                    <Button x:Name="button_output_path" Content="output path" HorizontalAlignment="Left" Margin="667,0,0,0" VerticalAlignment="Center" Height="30" Width="90" Click="button_output_path_Click"/>
                 </Grid>
             </TabItem>
             <TabItem HorizontalAlignment="Center" Height="20" Header="test" VerticalAlignment="Center" Width="70">
@@ -128,6 +110,37 @@
                     <Button x:Name="button_tab_para" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_tab_para_Click"/>
                 </Grid>
 
+            </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="20" Header="create exam" VerticalAlignment="Center" >
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="313,10,0,0" TextWrapping="Wrap" Text="Create exam" VerticalAlignment="Top" FontFamily="Broadway" FontSize="48"/>
+                    <DataGrid x:Name="dataGrid1" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10,69,95,188">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  Header="Q" Binding="{Binding Q}" Width="40"/>
+                            <DataGridTextColumn Header="Question" Binding="{Binding Question}" Width="*"/>
+                            <DataGridTextColumn  Header="model answer" Binding="{Binding Answer}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="button_new" Content="new" HorizontalAlignment="Left" Margin="881,79,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_new_Click"/>
+                    <Button x:Name="button_add" Content="add" HorizontalAlignment="Left" Margin="881,113,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_add_Click"/>
+                    <Button x:Name="button_save" Content="save" HorizontalAlignment="Left" Margin="881,147,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_save_Click"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="20" Header="take exam" VerticalAlignment="Center">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textbox_takeexam_selectexam" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="750" Height="25"/>
+                    <Button x:Name="button_takeexam_selectexam" Content="select exam" HorizontalAlignment="Left" Margin="785,20,0,0" VerticalAlignment="Top" Height="25" Width="160" Click="button_takeexam_selectexam_Click" />
+                    <TextBox x:Name="textbox_takeexam_question" HorizontalAlignment="Left" Margin="120,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="745" Height="102" IsReadOnly="True"/>
+                    <TextBox x:Name="textbox_takeexam_answer" HorizontalAlignment="Left" Margin="120,276,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="745" Height="134" TextChanged="textbox_takeexam_answer_TextChanged"/>
+                    <TextBlock x:Name="textblock_takeexam_question_number" HorizontalAlignment="Left" Margin="372,448,0,0" TextWrapping="Wrap" Text="question 0/0" VerticalAlignment="Top"/>
+                    <Button x:Name="button_takeexam_last" Content="last" HorizontalAlignment="Left" Margin="283,448,0,0" VerticalAlignment="Top" Width="50" Click="button_takeexam_last_Click"/>
+                    <Button x:Name="button_takeexam_next" Content="next" HorizontalAlignment="Left" Margin="474,448,0,0" VerticalAlignment="Top" Width="50" Click="button_takeexam_next_Click"/>
+                    <Button x:Name="button_takeexam_submit"  Content="submit" HorizontalAlignment="Left" Margin="785,448,0,0" VerticalAlignment="Top" Width="50"/>
+                    <TextBox x:Name="textbox_takeexam_studentid" HorizontalAlignment="Left" Margin="428,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button_takeexam_startexam" Content="start" HorizontalAlignment="Left" Margin="604,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.909,-0.776" Width="50" Click="button_takeexam_startexam_Click"/>
+                    <TextBlock x:Name="textblock12" HorizontalAlignment="Left" Margin="332,115,0,0" TextWrapping="Wrap" Text="student id" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
