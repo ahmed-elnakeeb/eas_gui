@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow"  Height="571" Width="1000">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Center" Height="535" VerticalAlignment="Center" Width="977">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Center" Height="535" VerticalAlignment="Center" Width="977" >
             <TabItem HorizontalAlignment="Center" Height="20" Header="exams" VerticalAlignment="Center" Width="70">
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="button_load_asnwers" Content="load answers" Width="90" Height="30" HorizontalAlignment="Left" Margin="667,153,0,0" VerticalAlignment="Top" Click="button_load_asnwers_Click"/>
@@ -19,104 +19,114 @@
                     <Button x:Name="button_output_path" Content="output path" HorizontalAlignment="Left" Margin="667,0,0,0" VerticalAlignment="Center" Height="30" Width="90" Click="button_output_path_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem HorizontalAlignment="Center" Height="20" Header="test" VerticalAlignment="Center" Width="70">
+            <TabItem Header="testing">
+                <Grid x:Name="g2">
+                    <TabControl x:Name="tabControl1">
+                        <TabItem HorizontalAlignment="Center" Height="20" Header="test" VerticalAlignment="Center" Width="70">
 
-                <Grid Background="#FFE5E5E5">
+                            <Grid Background="#FFE5E5E5">
 
-                    <TextBox x:Name="textBox_essay1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="example text" VerticalAlignment="Top" Width="380" Height="302" Background="WhiteSmoke"/>
-                    <TextBox x:Name="textBox_essay2" HorizontalAlignment="Left" Margin="410,10,0,0" TextWrapping="Wrap" Text="some thing else" VerticalAlignment="Top" Width="410" Height="302" Background="WhiteSmoke"/>
+                                <TextBox x:Name="textBox_essay1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="example text" VerticalAlignment="Top" Width="380" Height="302" Background="WhiteSmoke"/>
+                                <TextBox x:Name="textBox_essay2" HorizontalAlignment="Left" Margin="410,10,0,0" TextWrapping="Wrap" Text="some thing else" VerticalAlignment="Top" Width="410" Height="302" Background="WhiteSmoke"/>
 
-                    <Button x:Name="calculate_score" Content="calculate score" HorizontalAlignment="Left" Margin="709,417,0,0" VerticalAlignment="Top" Click="calculate_score_Click"/>
+                                <Button x:Name="calculate_score" Content="calculate score" HorizontalAlignment="Left" Margin="709,417,0,0" VerticalAlignment="Top" Click="calculate_score_Click"/>
 
-                    <TextBlock x:Name="textBlock_sentiment_analysis" HorizontalAlignment="Left" Margin="222,317,0,0" TextWrapping="Wrap" Text="sentiment_analysis" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Paraphrase" HorizontalAlignment="Left" Margin="10,458,0,0" TextWrapping="Wrap" Text="Paraphrase:" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_semantic_similarity" HorizontalAlignment="Left" Margin="10,419,0,0" TextWrapping="Wrap" Text="semantic similarity: " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Linguistic_Acceptability" HorizontalAlignment="Left" Margin="10,317,0,0" TextWrapping="Wrap" Text="Linguistic_Acceptability" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_total" HorizontalAlignment="Left" Margin="558,445,0,0" TextWrapping="Wrap" Text="total" VerticalAlignment="Top" RenderTransformOrigin="1.484,0.787"/>
-                    <TextBlock x:Name="textBlock_Linguistic_Acceptability_2" HorizontalAlignment="Left" Margin="410,317,0,0" TextWrapping="Wrap" Text="Linguistic_Acceptability" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_sentiment_analysis_2" HorizontalAlignment="Left" Margin="615,317,0,0" TextWrapping="Wrap" Text="sentiment_analysis" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_sentiment_analysis" HorizontalAlignment="Left" Margin="222,317,0,0" TextWrapping="Wrap" Text="sentiment_analysis" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_Paraphrase" HorizontalAlignment="Left" Margin="10,458,0,0" TextWrapping="Wrap" Text="Paraphrase:" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_semantic_similarity" HorizontalAlignment="Left" Margin="10,419,0,0" TextWrapping="Wrap" Text="semantic similarity: " VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_Linguistic_Acceptability" HorizontalAlignment="Left" Margin="10,317,0,0" TextWrapping="Wrap" Text="Linguistic_Acceptability" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_total" HorizontalAlignment="Left" Margin="558,445,0,0" TextWrapping="Wrap" Text="total" VerticalAlignment="Top" RenderTransformOrigin="1.484,0.787"/>
+                                <TextBlock x:Name="textBlock_Linguistic_Acceptability_2" HorizontalAlignment="Left" Margin="410,317,0,0" TextWrapping="Wrap" Text="Linguistic_Acceptability" VerticalAlignment="Top"/>
+                                <TextBlock x:Name="textBlock_sentiment_analysis_2" HorizontalAlignment="Left" Margin="615,317,0,0" TextWrapping="Wrap" Text="sentiment_analysis" VerticalAlignment="Top"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem HorizontalAlignment="Center" Height="20" Header="grammer" VerticalAlignment="Center" Width="70">
+                            <Grid x:Name="grid_cola" Background="#FFE5E5E5">
+                                <TextBox x:Name="textBox_cola1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola2" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola3" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola4" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola5" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola6" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola7" HorizontalAlignment="Left" Height="30" Margin="24,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola8" HorizontalAlignment="Left" Height="30" Margin="24,270,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola9" HorizontalAlignment="Left" Height="30" Margin="24,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola10" HorizontalAlignment="Left" Height="30" Margin="24,340,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola11" HorizontalAlignment="Left" Height="30" Margin="24,375,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_cola12" HorizontalAlignment="Left" Height="30" Margin="24,410,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <Button x:Name="button_cola_submit" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_cola_submit_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem HorizontalAlignment="Center" Height="20" Header="entailment" VerticalAlignment="Center" Width="70">
+                            <Grid x:Name="grid_entailment" Background="#FFE5E5E5">
+                                <TextBox x:Name="textBox_entailment1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment2" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment3" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment4" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment5" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment6" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment7" HorizontalAlignment="Left" Height="30" Margin="24,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment8" HorizontalAlignment="Left" Height="30" Margin="24,270,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment9" HorizontalAlignment="Left" Height="30" Margin="24,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment10" HorizontalAlignment="Left" Height="30" Margin="24,340,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment11" HorizontalAlignment="Left" Height="30" Margin="24,375,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_entailment12" HorizontalAlignment="Left" Height="30" Margin="24,410,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <Button x:Name="button_entailment1" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_entailment1_Click"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem  HorizontalAlignment="Center" Height="20" Header="semantic" VerticalAlignment="Center" Width="70">
+                            <Grid x:Name="grid_sts" Background="#FFE5E5E5">
+                                <TextBox x:Name="textBox_tab_stsb1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb2" HorizontalAlignment="Left" Height="30" Margin="520,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+
+                                <TextBox x:Name="textBox_tab_stsb3" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb4" HorizontalAlignment="Left" Height="30" Margin="520,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+
+                                <TextBox x:Name="textBox_tab_stsb5" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb6" HorizontalAlignment="Left" Height="30" Margin="520,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+
+                                <TextBox x:Name="textBox_tab_stsb7" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb8" HorizontalAlignment="Left" Height="30" Margin="520,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+
+                                <TextBox x:Name="textBox_tab_stsb9" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb10" HorizontalAlignment="Left" Height="30" Margin="520,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb11" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_stsb12" HorizontalAlignment="Left" Height="30" Margin="520,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <Button x:Name="button_tab_stsb" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_tab_stsb_Click"/>
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem HorizontalAlignment="Center" Height="20" Header="paraphrase" VerticalAlignment="Center" Width="70">
+                            <Grid x:Name="grid_para" Background="#FFE5E5E5">
+                                <TextBox x:Name="textBox_tab_para1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para2" HorizontalAlignment="Left" Height="30" Margin="520,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para3" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para4" HorizontalAlignment="Left" Height="30" Margin="520,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para5" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para6" HorizontalAlignment="Left" Height="30" Margin="520,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para7" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para8" HorizontalAlignment="Left" Height="30" Margin="520,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para9" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para10" HorizontalAlignment="Left" Height="30" Margin="520,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para11" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <TextBox x:Name="textBox_tab_para12" HorizontalAlignment="Left" Height="30" Margin="520,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+                                <Button x:Name="button_tab_para" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_tab_para_Click"/>
+                            </Grid>
+
+                        </TabItem>
+                    </TabControl>
+
+
                 </Grid>
             </TabItem>
-            <TabItem HorizontalAlignment="Center" Height="20" Header="grammer" VerticalAlignment="Center" Width="70">
-                <Grid x:Name="grid_cola" Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_cola1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola2" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola3" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola4" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola5" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola6" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola7" HorizontalAlignment="Left" Height="30" Margin="24,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola8" HorizontalAlignment="Left" Height="30" Margin="24,270,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola9" HorizontalAlignment="Left" Height="30" Margin="24,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola10" HorizontalAlignment="Left" Height="30" Margin="24,340,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola11" HorizontalAlignment="Left" Height="30" Margin="24,375,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_cola12" HorizontalAlignment="Left" Height="30" Margin="24,410,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <Button x:Name="button_cola_submit" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_cola_submit_Click"/>
-                </Grid>
-            </TabItem>
-            <TabItem HorizontalAlignment="Center" Height="20" Header="entailment" VerticalAlignment="Center" Width="70">
-                <Grid x:Name="grid_entailment" Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_entailment1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment2" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment3" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment4" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment5" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment6" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment7" HorizontalAlignment="Left" Height="30" Margin="24,235,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment8" HorizontalAlignment="Left" Height="30" Margin="24,270,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment9" HorizontalAlignment="Left" Height="30" Margin="24,305,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment10" HorizontalAlignment="Left" Height="30" Margin="24,340,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment11" HorizontalAlignment="Left" Height="30" Margin="24,375,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_entailment12" HorizontalAlignment="Left" Height="30" Margin="24,410,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <Button x:Name="button_entailment1" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_entailment1_Click"/>
-                </Grid>
-            </TabItem>
-            <TabItem  HorizontalAlignment="Center" Height="20" Header="semantic" VerticalAlignment="Center" Width="70">
-                <Grid x:Name="grid_sts" Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_tab_stsb1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb2" HorizontalAlignment="Left" Height="30" Margin="520,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
 
-                    <TextBox x:Name="textBox_tab_stsb3" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb4" HorizontalAlignment="Left" Height="30" Margin="520,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
+            <TabItem x:Name="tap_create_exam_1" HorizontalAlignment="Center" Height="20" Header="create exam" VerticalAlignment="Center" >
 
-                    <TextBox x:Name="textBox_tab_stsb5" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb6" HorizontalAlignment="Left" Height="30" Margin="520,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-
-                    <TextBox x:Name="textBox_tab_stsb7" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb8" HorizontalAlignment="Left" Height="30" Margin="520,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-
-                    <TextBox x:Name="textBox_tab_stsb9" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb10" HorizontalAlignment="Left" Height="30" Margin="520,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb11" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_stsb12" HorizontalAlignment="Left" Height="30" Margin="520,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <Button x:Name="button_tab_stsb" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_tab_stsb_Click"/>
-                </Grid>
-
-            </TabItem>
-            <TabItem HorizontalAlignment="Center" Height="20" Header="paraphrase" VerticalAlignment="Center" Width="70">
-                <Grid x:Name="grid_para" Background="#FFE5E5E5">
-                    <TextBox x:Name="textBox_tab_para1" HorizontalAlignment="Left" Height="30" Margin="24,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para2" HorizontalAlignment="Left" Height="30" Margin="520,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para3" HorizontalAlignment="Left" Height="30" Margin="24,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para4" HorizontalAlignment="Left" Height="30" Margin="520,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para5" HorizontalAlignment="Left" Height="30" Margin="24,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para6" HorizontalAlignment="Left" Height="30" Margin="520,95,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para7" HorizontalAlignment="Left" Height="30" Margin="24,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para8" HorizontalAlignment="Left" Height="30" Margin="520,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para9" HorizontalAlignment="Left" Height="30" Margin="24,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para10" HorizontalAlignment="Left" Height="30" Margin="520,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para11" HorizontalAlignment="Left" Height="30" Margin="24,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <TextBox x:Name="textBox_tab_para12" HorizontalAlignment="Left" Height="30" Margin="520,200,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="330"/>
-                    <Button x:Name="button_tab_para" Content="submit" HorizontalAlignment="Left" Height="30" Margin="24,445,0,0" VerticalAlignment="Top" Width="102" Click="button_tab_para_Click"/>
-                </Grid>
-
-            </TabItem>
-            <TabItem HorizontalAlignment="Center" Height="20" Header="create exam" VerticalAlignment="Center" >
-                <Grid Background="#FFE5E5E5">
+                <Grid   Background="#FFE5E5E5" Cursor="">
                     <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="313,10,0,0" TextWrapping="Wrap" Text="Create exam" VerticalAlignment="Top" FontFamily="Broadway" FontSize="48"/>
                     <DataGrid x:Name="dataGrid1" CanUserAddRows="False" AutoGenerateColumns="False" Margin="10,69,95,188">
                         <DataGrid.Columns>
-                            <DataGridTextColumn  Header="Q" Binding="{Binding Q}" Width="40"/>
+                            <DataGridTextColumn  Header="ID" Binding="{Binding ID}" Width="40"/>
                             <DataGridTextColumn Header="Question" Binding="{Binding Question}" Width="*"/>
                             <DataGridTextColumn  Header="model answer" Binding="{Binding Answer}" Width="*"/>
                         </DataGrid.Columns>
@@ -124,8 +134,10 @@
                     <Button x:Name="button_new" Content="new" HorizontalAlignment="Left" Margin="881,79,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_new_Click"/>
                     <Button x:Name="button_add" Content="add" HorizontalAlignment="Left" Margin="881,113,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_add_Click"/>
                     <Button x:Name="button_save" Content="save" HorizontalAlignment="Left" Margin="881,147,0,0" VerticalAlignment="Top" Height="29" Width="80" Click="button_save_Click"/>
+                    <TextBlock x:Name="change_style_textblock" HorizontalAlignment="Left" Margin="893,-3,0,0" TextWrapping="Wrap"  Text="change style" VerticalAlignment="Top" Width="67" Foreground="#FF391FF1" Cursor="Hand" MouseLeftButtonDown="change_style_textblock_MouseLeftButtonDown"/>
 
                 </Grid>
+
             </TabItem>
             <TabItem HorizontalAlignment="Center" Height="20" Header="take exam" VerticalAlignment="Center">
                 <Grid Background="#FFE5E5E5">
@@ -136,12 +148,65 @@
                     <TextBlock x:Name="textblock_takeexam_question_number" HorizontalAlignment="Left" Margin="372,448,0,0" TextWrapping="Wrap" Text="question 0/0" VerticalAlignment="Top"/>
                     <Button x:Name="button_takeexam_last" Content="last" HorizontalAlignment="Left" Margin="283,448,0,0" VerticalAlignment="Top" Width="50" Click="button_takeexam_last_Click"/>
                     <Button x:Name="button_takeexam_next" Content="next" HorizontalAlignment="Left" Margin="474,448,0,0" VerticalAlignment="Top" Width="50" Click="button_takeexam_next_Click"/>
-                    <Button x:Name="button_takeexam_submit"  Content="submit" HorizontalAlignment="Left" Margin="785,448,0,0" VerticalAlignment="Top" Width="50"/>
-                    <TextBox x:Name="textbox_takeexam_studentid" HorizontalAlignment="Left" Margin="428,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button_takeexam_submit"  Content="submit" HorizontalAlignment="Left" Margin="785,448,0,0" VerticalAlignment="Top" Width="50" Click="button_takeexam_submit_Click"/>
+                    <TextBox x:Name="textbox_takeexam_studentid" HorizontalAlignment="Left" Margin="428,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
                     <Button x:Name="button_takeexam_startexam" Content="start" HorizontalAlignment="Left" Margin="604,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.909,-0.776" Width="50" Click="button_takeexam_startexam_Click"/>
                     <TextBlock x:Name="textblock12" HorizontalAlignment="Left" Margin="332,115,0,0" TextWrapping="Wrap" Text="student id" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="20" Header="results" VerticalAlignment="Center" Width="54">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox_browse" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="25,25,0,0" TextWrapping="Wrap" Text="" Height="40" Width="750"/>
+                    <Button x:Name="button_browse" Content="Browse" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="786,25,0,0"  Height="40" Width="150" Click="button_browse_Click" >
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.008"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                    </Button>
+                    <DataGrid x:Name="dataGrid_results" HorizontalAlignment="Center" Height="236" Margin="0,73,0,0" VerticalAlignment="Top" Width="951" >
+                        <!--<DataGrid.Columns>
+                            <DataGridTextColumn  Header="SID" Binding="{Binding SID}" />
+                            <DataGridTextColumn Header="QID" Binding="{Binding QID}" />
+                            <DataGridTextColumn  Header="Answer" Binding="{Binding Answer}" />
+                            <DataGridTextColumn  Header="Total" Binding="{Binding Total}" />
+                            <DataGridTextColumn  Header="STS" Binding="{Binding STS}" />
+                            <DataGridTextColumn  Header="Paraphrase" Binding="{Binding Paraphrase}" />
+                            <DataGridTextColumn Header="Entailment" Binding="{Binding Entailment}" />
+                            <DataGridTextColumn  Header="COLA" Binding="{Binding COLA}" Width="*"/>
+                        </DataGrid.Columns>-->
+
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem HorizontalAlignment="Center" Height="20" Header="server" VerticalAlignment="Center" Width="54">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBox_server" HorizontalAlignment="Left" Margin="183,136,0,0" TextWrapping="Wrap" Text="http://localhost:8087/" VerticalAlignment="Top" Width="348"/>
+                    <Button x:Name="button_test" Content="test" Width="40" HorizontalAlignment="Left" Margin="536,134,0,0" VerticalAlignment="Top" Click="button_test_Click"/>
+                    <Button x:Name="button_set" Content="set" Width="40" HorizontalAlignment="Left" Margin="581,133,0,0" VerticalAlignment="Top" Click="button_set_Click"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tap_createexam_2" Visibility="Hidden" HorizontalAlignment="Center"  Height="20" Header="create exam" VerticalAlignment="Center">
+                <Grid   Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Create exam" VerticalAlignment="Top" FontFamily="Broadway" FontSize="48"/>
+                    <TextBox x:Name="textBox" HorizontalAlignment="Center" Margin="0,89,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="335"/>
+                    <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="281,89,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
+                    <TextBlock Name="t2" HorizontalAlignment="Left" Margin="165,215,0,0" TextWrapping="Wrap" Text="Question" VerticalAlignment="Top" RenderTransformOrigin="0.087,0.628"/>
+                    <TextBox x:Name="textBox_createexam_2_question" HorizontalAlignment="Left" Margin="281,178,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="500" Height="100"/>
+                    <TextBlock Name="t1" HorizontalAlignment="Left" Margin="174,350,0,0" TextWrapping="Wrap" Text="Answer" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textbox_createexam_2_answer" HorizontalAlignment="Left" Margin="281,283,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="500" Height="149"/>
+                    <Button x:Name="button_createexame_2_add" Content="Add question" HorizontalAlignment="Left" Margin="281,436,0,0" VerticalAlignment="Top" Click="button_createexame_2_add_Click"/>
+                    <Button x:Name="button_createexame_2_clear" Content="Clear all" HorizontalAlignment="Left" Margin="508,436,0,0" VerticalAlignment="Top" Click="button_createexame_2_clear_Click"/>
+                    <Button x:Name="button_createexame_2_save" Content="Save exam" HorizontalAlignment="Left" Margin="721,436,0,0" VerticalAlignment="Top" Click="button_createexame_2_save_Click"/>
+                    <TextBlock x:Name="change_style_textblock2" HorizontalAlignment="Left" Margin="893,-3,0,0" TextWrapping="Wrap"  Text="change style" VerticalAlignment="Top" Width="67" Foreground="#FF391FF1" Cursor="Hand" MouseLeftButtonDown="change_style_textblock_MouseLeftButtonDown"/>
+
+                </Grid>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

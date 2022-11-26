@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -31,20 +32,18 @@ namespace eas_gui
     /// </summary>
     public partial class MainWindow : Window
     {
-
         HttpClient client;
         HttpResponseMessage response;
         int entail_size;
         int cola_size;
-        List<ExamQuestion> questions;
-        int Q;
+        int Q=0;
         int sts_size;
-        int para_size;
         Exam exam;
         Student takeexam_student;
         int takeexam_curent = 1;
-
-
+        List<exam_result> results=new List<exam_result>();
+        bool strted_creating_exam=false;
+        bool is_server_working=false;
         public MainWindow()
         {
             InitializeComponent();
@@ -53,75 +52,7 @@ namespace eas_gui
             entail_size = grid_entailment.Children.Count;
             cola_size= grid_cola.Children.Count;
             sts_size= grid_sts.Children.Count;
-            para_size= grid_para.Children.Count;
-
-            
         }
-
-
-        //private void button_new_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Question question = new Question() {Q="what is the name of the sun",A="the sun!" };
-
-        //    Question question2 = new Question() { Q = "what is the name of the sun", A = "the sun!" };
-
-
-        //    var exam = new Exam() {Name="ahmed" ,Questions=new List<Question>() { question ,question2} , Created_on =DateTime.Now};          
-        //    dataGrid.Items.Add(exam);
-        //}
-        //private void dataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        //{
-        //    if (dataGrid.SelectedItems.Count ==1)
-        //    {
-        //        Exam exam = new Exam();
-        //        foreach (var obj in dataGrid.SelectedItems)
-        //        {
-        //            exam = obj as Exam;
-        //            var questions = exam.Questions;
-        //            dataGrid1.Items.Clear();
-        //            foreach (var item in questions)
-        //                dataGrid1.Items.Add(item);
-        //        }
-        //    }
-        //    else
-        //    {
-        //    }
-        //}
-
-        //private void button_delete_Click(object sender, RoutedEventArgs e)
-        //{
-        //    dataGrid.Items.Remove(dataGrid.SelectedItem);
-        //}
-        
-        //private void button_from_csv_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Exam exam=new Exam();
-        //    List<Question> questions = new List<Question>();
-
-
-        //    OpenFileDialog openFileDialog = new OpenFileDialog();
-        //    openFileDialog.ShowDialog();
-        //    exam.Created_on = DateTime.Now;
-        //    exam.Name=openFileDialog.FileName;
-        //    using (var reader = new StreamReader(openFileDialog.FileName))
-        //    {
-        //        List<string> listA = new List<string>();
-        //        List<string> listB = new List<string>();
-        //        while (!reader.EndOfStream)
-        //        {
-        //            var line = reader.ReadLine();
-        //            var values = line.Split(',');
-        //            questions.Add(new Question() { Q = values[0], A = values[1] });
-
-
-
-
-        //        }
-
-        //    }
-        //    exam.Questions = questions;
-        //    dataGrid.Items.Add(exam);
-        //}
 
         private void calculate_score_Click(object sender, RoutedEventArgs e)
         {
@@ -246,9 +177,6 @@ namespace eas_gui
                 total = 5;
             total = Math.Round(total, 3);
             textBlock_total.Text = total.ToString();
-
-
-
         }
 
         private void button_cola_submit_Click(object sender, RoutedEventArgs e)
@@ -418,19 +346,17 @@ namespace eas_gui
         }
         private void button_output_path_Click(object sender, RoutedEventArgs e)
         {
-            var x = new SaveFileDialog();
-            x.Title = "name the output file";
-
-            if (x.ShowDialog() == true)
-
-            {
-                textBox_examtab_out_location.Text = x.FileName;
-            }
+            
+                var s = new SaveFileDialog();
+                s.Filter = "CSV Files (*.csv)|*.csv|all files (*)|*";
+            if (s.ShowDialog() == true)
+                textBox_examtab_out_location.Text = s.FileName;
+            
         }
+
         private void button_start_Click(object sender, RoutedEventArgs e)
         {
-
-            List<ModelAnswer> Model_Answers= new List<ModelAnswer>();
+            exam = new Exam();
             List<Student> students_answers=new List<Student>();
             CsvOptions a = new CsvOptions();
             a.HeaderMode = HeaderMode.HeaderAbsent;
@@ -453,30 +379,39 @@ namespace eas_gui
             foreach (var line in CsvReader.ReadFromText(csv, a))
             {
                 // Header is handled, each line will contain the actual row data
-                int ID = int.Parse(line[0]);
-                string questions = line[1];
-                string Answer = line[2];
+                int id = int.Parse(line[0]);
+                string question = line[1];
+                string answer = line[2];
+
+                exam.Questions.Add(new ExamQuestion() { ID = id, Question = question, Answer = answer });
                 
-                
-                Model_Answers.Add(new ModelAnswer() { ID = ID, Answer= Answer });
 
             }
-            var root =new Root() { Students=students_answers,Model_Answers=Model_Answers};
+            var root =new scoring() { Students=students_answers,exam=exam};
             var xyzf =Newtonsoft.Json.JsonConvert.SerializeObject(root);
 
             if (textBox_examtab_out_location.Text != "")
             {
-                var jsonstring = "api/scoring/?data=" + Uri.EscapeDataString(xyzf)+ "&outputpath="+ Uri.EscapeDataString(textBox_examtab_out_location.Text);
+                var jsonstring = "api/scoring/?data=" + Uri.EscapeDataString(xyzf);
+                //jsonstring+="&outputpath=" + Uri.EscapeDataString(textBox_examtab_out_location.Text);
                 response = client.GetAsync(jsonstring).Result;
+                using (StreamWriter writer = new StreamWriter(textBox_examtab_out_location.Text))
+                {
+                    string res = response.Content.ReadAsStringAsync().Result;
+                    res=res.Remove(0,1);
+                    res=res.Remove(res.Length-1,1);
+                    res=res.Replace("\\n", "\r\n");
+
+                    writer.Write(res);
+
+                }
 
             }
             else
             { 
                 var jsonstring = "api/scoring/?data=" + Uri.EscapeDataString(xyzf);
                 response = client.GetAsync(jsonstring).Result;
-            }
-
-            
+            }      
 
             if (response.IsSuccessStatusCode)
             {
@@ -495,59 +430,47 @@ namespace eas_gui
 
             dataGrid1.ItemsSource = null;
             Q = 0;
-            questions = new List<ExamQuestion>();
-            dataGrid1.ItemsSource = questions;
+            exam=new Exam() { Name=""};
 
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            dataGrid1.ItemsSource =exam.Questions;
 
         }
 
         private void button_add_Click(object sender, RoutedEventArgs e)
         {
-            questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
+            exam.Questions.Add(new ExamQuestion() { ID = ++Q, Question = "", Answer = "" });
             
         }
 
         private void button_save_Click(object sender, RoutedEventArgs e)
         {
-            string content= "";
-            var csv = new StringBuilder();
-
-            foreach (var question in questions)
+            if (exam.Questions.Count > 0)
             {
-                var Q=question.ID;
-                var quest=question.Question;
-                var answer=question.Answer;
-
-                //Suggestion made by KyleMit
-                var newLine = string.Format("{0},{1},{2}", Q, quest,answer);
-                csv.AppendLine(newLine);
-
+                var s = new SaveFileDialog();
+                s.ShowDialog();
+                save_exam(exam, s.FileName);
             }
-            var s = new SaveFileDialog();
-            s.ShowDialog();
-            File.WriteAllText(s.FileName, csv.ToString());
+
 
         }
 
         private void button_takeexam_selectexam_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openfiledialog = new OpenFileDialog();
-            openfiledialog.Filter = "csv files|*.csv";
+            openfiledialog.Filter = "CSV Files (*.csv)|*.csv|all files (*)|*";
             openfiledialog.Multiselect = false;
-            bool? ok = openfiledialog.ShowDialog();
-            bool isok = ok ?? false;
 
-            if (isok)
+            if (openfiledialog.ShowDialog()==true)
             {
                 textbox_takeexam_selectexam.Text = openfiledialog.FileName;
             }
@@ -559,32 +482,12 @@ namespace eas_gui
         {
             takeexam_curent = 1;
             takeexam_student=new Student() { ID=int.Parse(textbox_takeexam_studentid.Text),Answers= new List<string>() };
-            exam=new Exam();
-
-            CsvOptions a = new CsvOptions();
-            a.HeaderMode = HeaderMode.HeaderAbsent;
-            var csv = File.ReadAllText(textbox_takeexam_selectexam.Text);
-            foreach (var line in CsvReader.ReadFromText(csv, a))
+            exam = loadexam(textbox_takeexam_selectexam.Text);
+            foreach (var item in exam.Questions)
             {
-                // Header is handled, each line will contain the actual row data
-
-
                 takeexam_student.Answers.Add("");
-                exam.Questions.Add(new ExamQuestion() { ID = int.Parse(line[0]),Question= line[1],
-                    Answer = line[2]
-                });
-
-            }
+            }            
             refresh_takeexam();
-
-        }
-        public void refresh_takeexam()
-        {
-            textblock_takeexam_question_number.Text = string.Format("question {0}/{1}", takeexam_curent, exam.Questions.Count.ToString());
-
-            textbox_takeexam_question.Text = exam.Questions[takeexam_curent-1].Question;
-
-            textbox_takeexam_answer.Text = takeexam_student.Answers[takeexam_curent - 1];
 
         }
 
@@ -607,10 +510,187 @@ namespace eas_gui
         {
             takeexam_student.Answers[takeexam_curent - 1] =textbox_takeexam_answer.Text;
         }
+        public void refresh_takeexam()
+        {
+            textblock_takeexam_question_number.Text = string.Format("question {0}/{1}", takeexam_curent, exam.Questions.Count.ToString());
+
+            textbox_takeexam_question.Text = exam.Questions[takeexam_curent - 1].Question;
+
+            textbox_takeexam_answer.Text = takeexam_student.Answers[takeexam_curent - 1];
+
+        }
+
+        private void button_takeexam_submit_Click(object sender, RoutedEventArgs e)
+        {
+            if (exam != null && takeexam_student != null)
+            {
+                // load students answers
+                var students_answers = new List<Student>();
+                students_answers.Add(takeexam_student);
+
+                //load model answers
+               
+
+                var root = new scoring() { Students = students_answers, exam = exam };
+                var xyzf = Newtonsoft.Json.JsonConvert.SerializeObject(root);
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter =  "CSV Files (*.csv)|*.csv|all files (*)|*";
+                if(save.ShowDialog()==true)
+                {
+                    var jsonstring = "api/scoring/?data=" + Uri.EscapeDataString(xyzf) + "&outputpath=" + Uri.EscapeDataString(save.FileName);
+                    response = client.GetAsync(jsonstring).Result;
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        using (StreamWriter writer = new StreamWriter(textBox_examtab_out_location.Text))
+                        {
+                            string res = response.Content.ReadAsStringAsync().Result;
+                            res = res.Remove(0, 1);
+                            res = res.Remove(res.Length - 1, 1);
+                            res = res.Replace("\\n", "\r\n");
+
+                            writer.Write(res);
+
+                        }
+                        //var obj = System.Text.Json.JsonSerializer.Deserialize<ServerModel>(result);
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("bad  response");
+                    }
+                }
+
+                
+                
+
+            }
+            else
+            {
+                MessageBox.Show("not enogh data");
+            }
+        }
+
+        private void button_browse_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            textBox_browse.Text = openFileDialog.FileName;
+
+            results = new List<exam_result>();
+            CsvOptions a = new CsvOptions();
+            a.HeaderMode = HeaderMode.HeaderPresent;
+
+            // load students answers
+            var csv = File.ReadAllText(openFileDialog.FileName);
+            foreach (var line in CsvReader.ReadFromText(csv, a))
+            {
+                // Header is handled, each line will contain the actual row data
+                int sid = int.Parse(line[0]);
+                int qid = int.Parse(line[1]);
+                string Answer=line[2];
+                double total =float.Parse(line[3]);
+                double sts=float.Parse(line[4]);
+                string paraphrase=line[5];
+                string entailment=line[6];
+                double cola=float.Parse(line[7]);
+                results.Add(new exam_result()
+                {
+                    SID = sid,
+                    QID = qid,
+                    Answer = Answer,
+                    Total = total,
+                    STS = sts,
+                    Paraphrase = paraphrase,
+                    Entailment = entailment,
+                    COLA = cola
+                });
+
+
+            }
+            dataGrid_results.ItemsSource = results;
+
+
+        }
+
+ 
+        private void change_style_textblock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            var tmp = tap_create_exam_1.Content;
+            tap_create_exam_1.Content = tap_createexam_2.Content;
+            tap_createexam_2.Content = tmp;
+                       
+        }
+
+        private void button_createexame_2_add_Click(object sender, RoutedEventArgs e)
+        {
+            if (strted_creating_exam==false)
+            {
+                exam = new Exam();
+                strted_creating_exam = true;
+                Q = 0;
+            }
+            if (textBox_createexam_2_question.Text!="" && textbox_createexam_2_answer.Text!="")
+            {
+                exam.Questions.Add(new ExamQuestion() { ID=Q++,Question=textBox_createexam_2_question.Text,
+                    Answer= textbox_createexam_2_answer.Text });
+                textBox_createexam_2_question.Text = "";
+                textbox_createexam_2_answer.Text = "";
+
+            }
+        }
+
+        private void button_createexame_2_clear_Click(object sender, RoutedEventArgs e)
+        {
+            strted_creating_exam=false;
+            exam = new Exam();
+            Q = 0;
+
+        }
+
+        private void button_createexame_2_save_Click(object sender, RoutedEventArgs e)
+        {
+            if (exam.Questions.Count>0)
+            {
+                var s = new SaveFileDialog();
+                if (s.ShowDialog()==true)
+                save_exam(exam,s.FileName);
+            }
+        }
+
+        private void button_test_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                response = client.GetAsync("").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("working");
+                    is_server_working=true;
+                }
+                else
+                {
+                    MessageBox.Show("not working");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("no such server");
+            }
+        }
+
+        private void button_set_Click(object sender, RoutedEventArgs e)
+        {
+            if (is_server_working)
+            {
+                client = new HttpClient();
+                client.BaseAddress = new Uri(textBox_server.Text);
+                MessageBox.Show("done");
+            }
+            else
+                MessageBox.Show("somthing went wrong test the server first");
+        }
     }
-
 }
-    
-
-
-
